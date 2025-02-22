@@ -2,12 +2,11 @@ import 'package:blog_application/core/theme/pallete.dart';
 import 'package:blog_application/features/auth/presentation/pages/signup_page.dart';
 import 'package:blog_application/features/auth/presentation/widgets/auth_field.dart';
 import 'package:blog_application/features/auth/presentation/widgets/auth_gradient_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LogInPage extends StatefulWidget {
   static route()=> MaterialPageRoute(builder: (context)=> const LogInPage());
-  const LogInPage({Key? key}) : super(key: key);
+  const LogInPage({super.key});
 
   @override
   State<LogInPage> createState() => _LogInPageState();
