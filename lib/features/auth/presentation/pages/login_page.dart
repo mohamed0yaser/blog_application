@@ -5,7 +5,7 @@ import 'package:blog_application/features/auth/presentation/widgets/auth_gradien
 import 'package:flutter/material.dart';
 
 class LogInPage extends StatefulWidget {
-  static route()=> MaterialPageRoute(builder: (context)=> const LogInPage());
+  static route() => MaterialPageRoute(builder: (context) => const LogInPage());
   const LogInPage({super.key});
 
   @override
@@ -52,7 +52,12 @@ class _LogInPageState extends State<LogInPage> {
               isPassword: true,
             ),
             const SizedBox(height: 20),
-            const AuthGradientButton(text: 'Log In',),
+             AuthGradientButton(
+              text: 'Log In',
+              onPressed: () {
+
+              },
+            ),
             const SizedBox(height: 20),
             GestureDetector(
               onTap: () {
@@ -68,10 +73,11 @@ class _LogInPageState extends State<LogInPage> {
                   children: [
                     TextSpan(
                         text: 'Sign Up',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              color: Pallete.gradient2,
-                              fontWeight: FontWeight.bold,
-                            )),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  color: Pallete.gradient2,
+                                  fontWeight: FontWeight.bold,
+                                )),
                   ],
                 ),
               ),

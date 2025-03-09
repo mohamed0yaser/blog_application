@@ -1,8 +1,10 @@
 import 'package:blog_application/core/theme/pallete.dart';
+import 'package:blog_application/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:blog_application/features/auth/presentation/pages/login_page.dart';
 import 'package:blog_application/features/auth/presentation/widgets/auth_field.dart';
 import 'package:blog_application/features/auth/presentation/widgets/auth_gradient_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpPage extends StatefulWidget {
   static route()=> MaterialPageRoute(builder: (context)=> const SignUpPage());
@@ -50,7 +52,15 @@ class _SignUpPageState extends State<SignUpPage> {
             const SizedBox(height: 10),
              AuthField(hintText: "Password", controller: passwordController,isPassword: true,),
             const SizedBox(height: 20),
-            const AuthGradientButton(text: 'Sign Up',),
+             AuthGradientButton(text: 'Sign Up', onPressed: () { 
+              if (_formKey.currentState!.validate()) {
+                context.read<AuthBloc>().add(AuthSignUp(
+                  email: emailController.text.trim(),
+                  password: passwordController.text.trim(),
+                  name: usernameController.text.trim(),
+                ));
+              }
+             }),
             const SizedBox(height: 20),
             GestureDetector(
               onTap: () {
