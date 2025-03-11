@@ -502,7 +502,7 @@ packages:
     source: hosted
     version: "1.4.1"
   supabase:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: supabase
       sha256: c3ebddba69ddcf16d8b78e8c44c4538b0193d1cf944fde3b72eb5b279892a370
@@ -662,5 +662,5 @@ packages:
     source: hosted
     version: "2.0.3"
 sdks:
-  dart: ">=3.7.0 <4.0.0"
-  flutter: ">=3.27.0"
+  dart: ">=3.3.4 <4.0.0"
+  flutter: ">=3.19.0"
