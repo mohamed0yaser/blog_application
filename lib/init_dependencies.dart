@@ -9,6 +9,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 final serviceLocatot = GetIt.instance;
 
 Future<void> initDependencies() async {
+  _initAuth();
   final supabase = await Supabase.initialize(
     url: AppSecrets.supabaseUrl,
     anonKey: AppSecrets.supabaseKey,
