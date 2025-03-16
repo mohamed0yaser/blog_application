@@ -1,6 +1,8 @@
+import 'package:blog_application/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:blog_application/core/secrets/app_secrets.dart';
 import 'package:blog_application/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:blog_application/features/auth/data/repository/auth_repository_implementation.dart';
+import 'package:blog_application/features/auth/domain/usecases/current_user.dart';
 import 'package:blog_application/features/auth/domain/usecases/user_login.dart';
 import 'package:blog_application/features/auth/domain/usecases/user_sign_up.dart';
 import 'package:blog_application/features/auth/presentation/bloc/auth_bloc.dart';
@@ -17,34 +19,43 @@ Future<void> initDependencies() async {
     debug: true,
   );
   serviceLocatot.registerLazySingleton(() => supabase.client);
+  // core
+  serviceLocatot.registerLazySingleton(() => AppUserCubit());
 }
 
 void _initAuth() {
-  serviceLocatot.registerFactory(
-    () => AuthRemoteDataSourceImplimentation(
-      supabaseClient: serviceLocatot<SupabaseClient>(),
-    ),
-  );
-  serviceLocatot.registerFactory(
-    () => AuthRepositoryImplementation(
-      remoteDataSource: serviceLocatot<AuthRemoteDataSourceImplimentation>(),
-    ),
-  );
-  serviceLocatot.registerFactory(
-    () => UserSignUp(
-      repository: serviceLocatot<AuthRepositoryImplementation>(),
-    ),
-  );
-
-  serviceLocatot.registerFactory(
-    () =>
-        UserLogin(serviceLocatot<AuthRepositoryImplementation>()),
-  );
-  
-  serviceLocatot.registerLazySingleton(
-    () => AuthBloc(
-      userSignUp: serviceLocatot<UserSignUp>(),
-      userLogin: serviceLocatot<UserLogin>(),
+  //dataSources
+  serviceLocatot
+    ..registerFactory(
+      () => AuthRemoteDataSourceImplimentation(
+        supabaseClient: serviceLocatot<SupabaseClient>(),
+      ),
     )
-  );
+    //repository
+    ..registerFactory(
+      () => AuthRepositoryImplementation(
+        remoteDataSource: serviceLocatot<AuthRemoteDataSourceImplimentation>(),
+      ),
+    )
+    //usecases
+    ..registerFactory(
+      () => UserSignUp(
+        repository: serviceLocatot<AuthRepositoryImplementation>(),
+      ),
+    )
+    ..registerFactory(
+      () => UserLogin(serviceLocatot<AuthRepositoryImplementation>()),
+    )
+    ..registerFactory(
+      () => CurrentUser(serviceLocatot<AuthRepositoryImplementation>()),
+    )
+    //bloc
+    ..registerLazySingleton(
+      () => AuthBloc(
+        userSignUp: serviceLocatot<UserSignUp>(),
+        userLogin: serviceLocatot<UserLogin>(), 
+        currentUser: serviceLocatot<CurrentUser>(), 
+        appUserCubit: serviceLocatot<AppUserCubit>(),
+      ),
+    );
 }
