@@ -14,10 +14,15 @@ class AppTheme{
       backgroundColor: Pallete.backgroundColor,
       elevation: 0,
     ),
+    chipTheme: ChipThemeData(
+      color: WidgetStatePropertyAll(Pallete.backgroundColor),
+      side: BorderSide.none
+    ),
     inputDecorationTheme:  InputDecorationTheme(
       contentPadding: const EdgeInsets.all(27),
       enabledBorder: _border(),
       focusedBorder: _border(Pallete.gradient2),
+      errorBorder: _border(Pallete.errorColor),
     )
   );
 }
