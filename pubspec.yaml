@@ -39,6 +39,10 @@ dependencies:
   supabase_flutter: ^2.8.4
   fpdart: ^1.1.1
   get_it: ^8.0.3
+  dotted_border: ^2.1.0
+  on_popup_window_widget: ^0.0.13
+  on_process_button_widget: ^2.0.6
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:
