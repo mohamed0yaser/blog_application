@@ -43,6 +43,7 @@ dependencies:
   on_popup_window_widget: ^0.0.13
   on_process_button_widget: ^2.0.6
   image_picker: ^1.1.2
+  uuid: ^4.5.1
 
 dev_dependencies:
   flutter_test:
