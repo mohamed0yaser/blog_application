@@ -64,6 +64,7 @@ class AuthRemoteDataSourceImplimentation implements AuthRemoteDataSource {
   }
 
   @override
+  // ignore: body_might_complete_normally_nullable
   Future<Usermodel?> getCurrentUserData() async {
     try {
       if (currentUserSession != null) {
