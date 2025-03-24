@@ -34,9 +34,9 @@ class BlogRepositoryImplimentation implements BlogRepository {
         blog: blogModel,
         image: image,
       );
-      await blogremoteDataSource.uploadBlog(blogModel);
       blogModel = blogModel.copyWith(imageUrl: imageUrl);
-      return Right(blogModel);
+      final uploadedBlog = await blogremoteDataSource.uploadBlog(blogModel);
+      return Right(uploadedBlog);
     } on ServerException catch (e) {
       return Left(Failure(e.message));
     }
