@@ -9,6 +9,7 @@ class BlogModel extends Blog {
     required super.imageUrl,
     required super.topics,
     required super.updateddAt,
+    super.postername,
   });
 
   factory BlogModel.fromJson(Map<String, dynamic> json) {
@@ -16,12 +17,12 @@ class BlogModel extends Blog {
       id: json['id'] as String,
       posterId: json['poster_id'] as String,
       title: json['title'] as String,
-      content: json['content'] as String,
+      content: json['context'] as String,
       imageUrl: json['image_url'] as String,
       topics: List<String>.from(json['topics'] ?? []),
-      updateddAt: json['created_at'] == null 
+      updateddAt: json['updated_at'] == null 
       ? DateTime.now()
-      :DateTime.parse(json['created_at']),
+      :DateTime.parse(json['updated_at']),
     );
   }
 
@@ -30,10 +31,10 @@ class BlogModel extends Blog {
       'id': id,
       'poster_id': posterId,
       'title': title,
-      'content': content,
+      'context': content,
       'image_url': imageUrl,
       'topics': topics,
-      'created_at': updateddAt.toIso8601String(),
+      'updated_at': updateddAt.toIso8601String(),
     };
   }
 
@@ -45,6 +46,7 @@ class BlogModel extends Blog {
     String? imageUrl,
     List<String>? topics,
     DateTime? updateddAt,
+    String? posterName,
   }) {
     return BlogModel(
       id: id ?? this.id,
@@ -54,6 +56,7 @@ class BlogModel extends Blog {
       imageUrl: imageUrl ?? this.imageUrl,
       topics: topics ?? this.topics,
       updateddAt: updateddAt ?? this.updateddAt,
+      postername: posterName ?? this.postername,
     );
   }
 
