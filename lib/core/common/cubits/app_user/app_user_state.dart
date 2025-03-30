@@ -11,3 +11,5 @@ final class AppUserLoggedIn extends AppUserState {
   AppUserLoggedIn(this.user);
 }
 
+final class AppUserLoggedOut extends AppUserState {}
+

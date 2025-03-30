@@ -1,17 +1,24 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
+
+import 'package:fpdart/fpdart.dart';
+import 'package:uuid/uuid.dart';
 
 import 'package:blog_application/core/error/exceptions.dart';
 import 'package:blog_application/core/error/failures.dart';
+import 'package:blog_application/core/network/connection_chacker.dart';
 import 'package:blog_application/features/blog/data/datasources/blog_remote_data_source.dart';
 import 'package:blog_application/features/blog/data/models/blog_model.dart';
 import 'package:blog_application/features/blog/domain/entities/blog.dart';
 import 'package:blog_application/features/blog/domain/repositories/blog_repository.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:uuid/uuid.dart';
 
 class BlogRepositoryImplimentation implements BlogRepository {
   final BlogRemoteDataSource blogremoteDataSource;
-  BlogRepositoryImplimentation(this.blogremoteDataSource);
+  final ConnectionChecker connectionChecker;
+  BlogRepositoryImplimentation(
+    this.blogremoteDataSource,
+    this.connectionChecker,
+  );
   @override
   Future<Either<Failure, Blog>> upladBlog({
     required File image,
@@ -21,6 +28,9 @@ class BlogRepositoryImplimentation implements BlogRepository {
     required List<String> topics,
   }) async {
     try {
+      if (!await connectionChecker.isConnected()) {
+        return left(Failure( 'No Internet Connection'));
+      }
       BlogModel blogModel = BlogModel(
         id:const Uuid().v1(),
         posterId: posterId,

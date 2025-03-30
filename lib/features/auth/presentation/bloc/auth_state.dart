@@ -25,3 +25,5 @@ final class AuthFailure extends AuthState {
   });
 }
 
+final class AuthLogout extends AuthState {}
+
