@@ -1,16 +1,43 @@
-# blog_application
+# 📖 Blog Application
 
-A new Flutter project.
+A Flutter-powered blog application with Supabase as the backend, allowing users to create and read log posts effortlessly. This project demonstrates authentication, real-time data handling, and a clean UI/UX design.
 
-## Getting Started
+## ✨ Features
 
-This project is a starting point for a Flutter application.
+🔐 User Authentication – Sign up, log in, and log out with Supabase Auth.
 
-A few resources to get you started if this is your first Flutter project:
+📝 Create Blogs – Users can write blog posts.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+🔄 Real-time Database – Blog posts are stored in a Supabase PostgreSQL database.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🎨 Responsive UI – Works seamlessly on Android, iOS, and Web.
+
+🎭 State Management – Uses Bloc & Cubit for efficient state handling.
+
+🗂 Image Uploads – Supports adding images to blog posts.
+
+## 🛠 Tech Stack
+
+Flutter (Dart) – Frontend framework
+
+Supabase – Backend & Database
+
+Bloc – State management
+
+Supabase Storage – For image uploads
+
+## 📌 Prerequisites
+
+Ensure you have the following installed:
+
+Flutter SDK
+
+Dart
+
+Supabase Account
+
+## 🎮 Usage
+
+Register/Login to access the blog platform.
+
+Create a new blog post with a title, content, and image.
