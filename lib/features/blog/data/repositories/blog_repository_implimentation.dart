@@ -7,7 +7,6 @@ import 'package:uuid/uuid.dart';
 import 'package:blog_application/core/error/exceptions.dart';
 import 'package:blog_application/core/error/failures.dart';
 import 'package:blog_application/core/network/connection_chacker.dart';
-import 'package:blog_application/features/blog/data/datasources/blog_local_datasource.dart';
 import 'package:blog_application/features/blog/data/datasources/blog_remote_data_source.dart';
 import 'package:blog_application/features/blog/data/models/blog_model.dart';
 import 'package:blog_application/features/blog/domain/entities/blog.dart';
@@ -15,11 +14,9 @@ import 'package:blog_application/features/blog/domain/repositories/blog_reposito
 
 class BlogRepositoryImplimentation implements BlogRepository {
   final BlogRemoteDataSource blogremoteDataSource;
-  final BlogLocalDataSource blogLocalDataSource;
   final ConnectionChecker connectionChecker;
   BlogRepositoryImplimentation(
     this.blogremoteDataSource,
-    this.blogLocalDataSource,
     this.connectionChecker,
   );
   @override
@@ -58,12 +55,7 @@ class BlogRepositoryImplimentation implements BlogRepository {
   @override
   Future<Either<Failure, List<Blog>>> getBlogs() async {
     try {
-      if (!await connectionChecker.isConnected()) {
-        final localBlogs = blogLocalDataSource.loadBlogs();
-                return Right(localBlogs);
-      }
       final blogs = await blogremoteDataSource.getBlogs();
-      blogLocalDataSource.uploadLocalBlogs(blogs: blogs);
       return Right(blogs);
     } on ServerException catch (e) {
       return Left(Failure(e.message));

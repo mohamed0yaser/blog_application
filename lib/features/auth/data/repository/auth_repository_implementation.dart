@@ -72,6 +72,11 @@ class AuthRepositoryImplementation implements AuthRepository {
     }
     }
     
+      @override
+      Future<void> logOut() {
+        return remoteDataSource.logOut();
+      }
+    
      
 
 }
