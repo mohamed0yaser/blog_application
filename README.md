@@ -36,6 +36,14 @@ Dart
 
 Supabase Account
 
+## 📷 Screenshots
+
+![App Screenshot](screenShots/photo1.jpg)
+![LogIn page](screenShots/photo2.jpg)
+![SignUp page](screenShots/photo3.jpg)
+![Home Screen Page](screenShots/photo4.jpg)
+![Add new Blog page](screenShots/photo5.jpg)
+
 ## 🎮 Usage
 
 Register/Login to access the blog platform.
